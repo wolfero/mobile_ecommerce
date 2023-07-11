@@ -1,14 +1,14 @@
-//TODO REFACTOR COLOR 
+//TODO REFACTOR COLOR
 .Container {
 	display: flexbox;
 	align-items: center;
-	flex-direction: column;
+
 	justify-content: space-between;
 	padding: 1rem;
 	background-color: #f2f2f2;
 	color: #333;
 	border-radius: 1rem;
-    margin: 2rem;
+	margin: 2rem;
 
 	a {
 		text-decoration: none;
@@ -18,7 +18,7 @@
 	.Breadcrumb {
 		display: flex;
 		align-items: center;
-		flex-grow: 1rem;
+		flex-direction: column;
 		justify-content: space-between;
 		align-content: space-between;
 
@@ -38,10 +38,10 @@
 		}
 
 		.Arrow {
-            color: #333;
+			color: #333;
 			margin-left: 10px;
 			margin-right: 10px;
-            font-weight: bold;
+			font-weight: bold;
 		}
 		.ProductsCount {
 			padding: 1rem;
@@ -51,6 +51,12 @@
 			span {
 				color: #f2f2f2;
 			}
+		}
+	}
+
+	@media (min-width: 768px) {
+		.Breadcrumb {
+			flex-direction: row;
 		}
 	}
 }

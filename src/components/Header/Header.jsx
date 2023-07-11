@@ -28,7 +28,6 @@ function Header() {
 					</Link>
 				)}
 				<p className={styles.ProductsCount}>
-					Products in Cart
 					<span>{data.productsInCart}</span>
 				</p>
 			</nav>
