@@ -6,8 +6,6 @@ import SectionContext from './context/SectionContext';
 import { ProductService } from './services/ProductService';
 import { StorageData } from './services/StorageService';
 
-import './App.css';
-
 function App() {
 	const [data, setData] = useState({
 		products: [],
