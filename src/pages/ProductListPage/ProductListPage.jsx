@@ -5,28 +5,67 @@ import useSection from '../../hooks/useSection';
 
 function ProductListPage() {
 	const { data } = useSection();
+	const [searchText, setSearchText] = useState('');
 	const [productsData, setProductsData] = useState();
+	const [filteredProducts, setFilteredProducts] = useState();
+
+	const handleSearchChange = (e) => {
+		setSearchText(e.target.value);
+	};
+
+	const filterProducts = () => {
+		const newProducts = productsData.filter(
+			(product) =>
+				product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
+				product.model.toLowerCase().includes(searchText.toLowerCase())
+		);
+		setFilteredProducts(newProducts);
+	};
 
 	useEffect(() => {
 		if (data.products) {
 			setProductsData(data.products);
 		}
-	});
+		if (searchText != '') {
+			filterProducts();
+		}
+	}, [data.products, searchText]);
 
 	return (
 		<div>
-			<h1>Lista de productos</h1>
-			{productsData ? (
-				<>
-					{productsData.map((product) => (
-						<Link key={product.id} to={`/product/${product.id}`}>
-							<Item product={product} />
-						</Link>
-					))}
-				</>
-			) : (
-				<Spinner />
-			)}
+			<section>
+				<h1>Lista de productos</h1>
+				<input
+					type="text"
+					value={searchText}
+					onChange={handleSearchChange}
+					placeholder="Search products"
+				/>
+			</section>
+
+			<div>
+				{filteredProducts ? (
+					<>
+						{filteredProducts.map((product) => (
+							<Link key={product.id} to={`/product/${product.id}`}>
+								<Item product={product} />
+							</Link>
+						))}
+					</>
+				) : productsData ? (
+					<>
+						{productsData.map((product) => (
+							<Link key={product.id} to={`/product/${product.id}`}>
+								<Item product={product} />
+							</Link>
+						))}
+					</>
+				) : (
+					<>
+						<Spinner />
+					</>
+				)}
+			</div>
 		</div>
 	);
 }
