@@ -64,7 +64,7 @@ function ProductDetailsPage() {
 		<div>
 			<h1>Detalles del producto</h1>
 			{product ? (
-				<>
+				<div>
 					<div>
 						<img src={product.imgUrl} alt={product.model} />
 					</div>
@@ -72,13 +72,10 @@ function ProductDetailsPage() {
 						<Description product={product} />
 						<Actions product={product} />
 					</div>
-				</>
+				</div>
 			) : (
 				<Spinner />
 			)}
-			<div>
-				<Link to="/">Volver a la lista</Link>
-			</div>
 		</div>
 	);
 }

@@ -38,7 +38,7 @@ function Actions({ product }) {
 	return (
 		<div>
 			<label>
-				Colores:
+				<b>Colores: </b>
 				<select value={selectedColor.code} onChange={handleColorChange}>
 					{product.options.colors.map((color) => (
 						<option key={color.code} value={color.code}>
@@ -49,7 +49,7 @@ function Actions({ product }) {
 			</label>
 			<br />
 			<label>
-				Almacenamiento:
+				<b>Almacenamiento: </b>
 				<select value={selectedStorage.code} onChange={handleStorageChange}>
 					{product.options.storages.map((storage) => (
 						<option key={storage.code} value={storage.code}>
