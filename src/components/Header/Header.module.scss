@@ -1,0 +1,56 @@
+//TODO REFACTOR COLOR 
+.Container {
+	display: flexbox;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1rem;
+	background-color: #f2f2f2;
+	color: #333;
+	border-radius: 1rem;
+    margin: 2rem;
+
+	a {
+		text-decoration: none;
+		color: #333;
+	}
+
+	.Breadcrumb {
+		display: flex;
+		align-items: center;
+		flex-grow: 1rem;
+		justify-content: space-between;
+		align-content: space-between;
+
+		span {
+			margin: 0 0.5rem;
+			color: #888;
+		}
+
+		.Active {
+			color: #333;
+			font-weight: bold;
+		}
+
+		.NotActive {
+			color: #888;
+			cursor: not-allowed;
+		}
+
+		.Arrow {
+            color: #333;
+			margin-left: 10px;
+			margin-right: 10px;
+            font-weight: bold;
+		}
+		.ProductsCount {
+			padding: 1rem;
+			border-radius: 0.5rem;
+			color: #ccc;
+			background-color: #333;
+			span {
+				color: #f2f2f2;
+			}
+		}
+	}
+}
