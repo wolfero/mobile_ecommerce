@@ -1,44 +1,86 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Description } from "../../components";
-import { Actions } from "../../components";
-import { ProductService } from "../../services/ProductService";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+
+import { Description, Spinner } from '../../components';
+import { Actions } from '../../components';
+import { ProductService } from '../../services/ProductService';
+import { StorageData } from '../../services/StorageService';
+import useSection from '../../hooks/useSection';
 
 function ProductDetailsPage() {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
+	const { id } = useParams();
+	const { data, updateContextData } = useSection();
+	const [product, setProduct] = useState(null);
+	const storageData = new StorageData();
 
-  const loadData = async () => {
-    const productService = new ProductService();
-    return await productService.readProductById(id);
-  };
+	const createNewData = (response) => {
+		if (!containsDetail(response)) {
+			data.productsDetails.push(response);
+		}
+		return {
+			products: data.products,
+			productsDetails: data.productsDetails,
+			productsInCart: data.productsInCart,
+		};
+	};
 
-  useEffect(() => {
-    loadData().then((response) => setProduct(response));
-  }, [id]);
+	const containsDetail = (newProductDetail) => {
+		if (data.productsDetails.length) {
+			const foundDetail = data.productsDetails.find(
+				(productDetail) => productDetail.id == newProductDetail.id
+			);
+			if (foundDetail) {
+				return true;
+			}
+		}
+		return false;
+	};
 
-  return (
-    <div>
-      <h1>Detalles del producto</h1>
-      {product ? (
-        <>
-          <div>
-            <img src={product.imgUrl} alt={product.model} />
-          </div>
-          <div>
-            <Description product={product} />
-            <Actions product={product} />
-          </div>
-        </>
-      ) : (
-        <Spinner />
-      )}
-      <div>
-        <Link to="/">Volver a la lista</Link>
-      </div>
-    </div>
-  );
+	const foundDetail = (productsDetails) => {
+		return productsDetails.find((detail) => detail.id == id);
+	};
+
+	const loadData = async () => {
+		const productService = new ProductService();
+		const response = await productService.readProductById(id);
+		return createNewData(response);
+	};
+
+	useEffect(() => {
+		const savedData = storageData.unStashData();
+		let detail = foundDetail(savedData.productsDetails);
+		if (detail) {
+			setProduct(detail);
+		} else {
+			loadData().then((response) => {
+				updateContextData(response);
+				detail = foundDetail(data.productsDetails);
+				setProduct(detail);
+			});
+		}
+	}, [id]);
+
+	return (
+		<div>
+			<h1>Detalles del producto</h1>
+			{product ? (
+				<>
+					<div>
+						<img src={product.imgUrl} alt={product.model} />
+					</div>
+					<div>
+						<Description product={product} />
+						<Actions product={product} />
+					</div>
+				</>
+			) : (
+				<Spinner />
+			)}
+			<div>
+				<Link to="/">Volver a la lista</Link>
+			</div>
+		</div>
+	);
 }
 
 export default ProductDetailsPage;
