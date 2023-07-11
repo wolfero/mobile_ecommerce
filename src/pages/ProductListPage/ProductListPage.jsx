@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Item, Spinner } from '../../components';
 import useSection from '../../hooks/useSection';
 
+import styles from './ProductListPage.module.scss';
+
 function ProductListPage() {
 	const { data } = useSection();
 	const [searchText, setSearchText] = useState('');
@@ -32,9 +34,8 @@ function ProductListPage() {
 	}, [data.products, searchText]);
 
 	return (
-		<div>
-			<section>
-				<h1>Lista de productos</h1>
+		<div className={styles.Container}>
+			<section className={styles.Section}>
 				<input
 					type="text"
 					value={searchText}
