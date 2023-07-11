@@ -1,24 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useSection from '../../hooks/useSection';
 
 function Header() {
-    return (
-        <header>
-            <Link to='/'>Logo</Link>
-            <nav>
-              //TODO barras navegación
-                <ul>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
-                </ul>
-            </nav>
-            <div>
-              // TODO numero persistente de Items en el carrito
-              0
+	const { data } = useSection();
+
+	return (
+		<header>
+			<Link to="/">Logo</Link>
+			<nav>
+				//TODO barras navegación
+				<ul>
+					<li>
+						<Link to="/">Home</Link>
+					</li>
+				</ul>
+			</nav>
+			<div>
+                <span>{data.productsInCart}</span>
             </div>
-        </header>
-    );
+		</header>
+	);
 }
 
 export default Header;
