@@ -35,7 +35,7 @@ function ProductListPage() {
 
 	return (
 		<div className={styles.Container}>
-			<section className={styles.Section}>
+			<section className={styles.Search}>
 				<input
 					type="text"
 					value={searchText}
@@ -44,29 +44,29 @@ function ProductListPage() {
 				/>
 			</section>
 
-			<div>
+			<section className={styles.List}>
 				{filteredProducts ? (
-					<>
+					<article>
 						{filteredProducts.map((product) => (
 							<Link key={product.id} to={`/product/${product.id}`}>
 								<Item product={product} />
 							</Link>
 						))}
-					</>
+					</article>
 				) : productsData ? (
-					<>
+					<article>
 						{productsData.map((product) => (
 							<Link key={product.id} to={`/product/${product.id}`}>
 								<Item product={product} />
 							</Link>
 						))}
-					</>
+					</article>
 				) : (
 					<>
 						<Spinner />
 					</>
 				)}
-			</div>
+			</section>
 		</div>
 	);
 }

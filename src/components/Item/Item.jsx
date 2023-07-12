@@ -1,15 +1,23 @@
 import React from 'react';
+import styles from './Item.module.scss';
 
 function Item({ product }) {
-	const price = product.price ? product.price + '€' : 'Out of stock';
+	const price = product.price ? (
+		<>
+			<span className={styles.Price}>{product.price}</span>€
+		</>
+	) : (
+		'Out of stock'
+	);
 
 	return (
-		<div className="item">
+		<div className={styles.Item}>
 			<img src={product.imgUrl} alt={product.model} />
 			<div>
-				<h3>{product.brand}</h3>
-				<p>{product.model}</p>
-				<p>Price: {price}</p>
+				<h3>
+					{product.brand} {product.model}
+				</h3>
+				<p>{price}</p>
 			</div>
 		</div>
 	);

@@ -9,7 +9,7 @@
 	border-radius: 1rem;
 	margin: 2rem;
 
-	.Section {
+	.Search {
 		display: flex;
 		justify-content: flex-end;
 		padding-bottom: 1rem;
@@ -20,5 +20,9 @@
 			width: 20rem;
 			border-radius: 0.5rem;
 		}
+	}
+
+	.List{
+		padding: 0.5rem;
 	}
 }
