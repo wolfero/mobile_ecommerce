@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Header, Footer } from './components';
+import { Header } from './components';
 import PageRoutes from './routes/PageRoutes';
 import SectionContext from './context/SectionContext';
 import { ProductService } from './services/ProductService';
@@ -53,7 +53,6 @@ function App() {
 			<>
 				<Header />
 				<PageRoutes />
-				<Footer />
 			</>
 		</SectionContext.Provider>
 	);
