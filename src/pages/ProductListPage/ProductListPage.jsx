@@ -7,7 +7,6 @@ function ProductListPage() {
 	const { data } = useSection();
 	const [searchText, setSearchText] = useState('');
 	const [productsData, setProductsData] = useState();
-	const [filteredProducts, setFilteredProducts] = useState();
 
 	const handleSearchChange = (e) => {
 		setSearchText(e.target.value);
@@ -19,15 +18,14 @@ function ProductListPage() {
 				product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
 				product.model.toLowerCase().includes(searchText.toLowerCase()),
 		);
-		setFilteredProducts(newProducts);
+		setProductsData(newProducts);
 	};
 
 	useEffect(() => {
-		if (data.products) {
-			setProductsData(data.products);
-		}
 		if (searchText != '') {
 			filterProducts();
+		} else if (data.products) {
+			setProductsData(data.products);
 		}
 	}, [data.products, searchText]);
 
@@ -41,25 +39,12 @@ function ProductListPage() {
 					onChange={handleSearchChange}
 					placeholder="Search products"
 				/>
-				{filteredProducts ? (
-					<section className="flex flex-wrap justify-center pt-2">
-						{filteredProducts.map((product) => (
-							<article
-								key={product.id}
-								className="w-full max-w-sm transform cursor-pointer px-3 py-6 duration-300 hover:-translate-y-2 sm:w-1/2 lg:w-1/4"
-							>
-								<Link to={`/product/${product.id}`}>
-									<Item product={product} />
-								</Link>
-							</article>
-						))}
-					</section>
-				) : productsData ? (
+				{productsData ? (
 					<section className="flex flex-wrap justify-center pt-2">
 						{productsData.map((product) => (
 							<article
 								key={product.id}
-								className="w-full max-w-sm transform cursor-pointer px-2 py-6 duration-300 hover:-translate-y-2 sm:w-1/2 lg:w-1/4"
+								className="w-full max-w-sm transform cursor-pointer px-4 py-6 duration-300 hover:-translate-y-2 sm:w-1/2 lg:w-1/4"
 							>
 								<Link to={`/product/${product.id}`}>
 									<Item product={product} />
