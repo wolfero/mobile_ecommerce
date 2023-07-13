@@ -61,21 +61,24 @@ function ProductDetailsPage() {
 	}, [id]);
 
 	return (
-		<div className="m-8 flex flex-col rounded-2xl bg-stone-200 p-4 text-stone-600">
+		<div className="m-4 flex flex-col rounded-2xl bg-stone-200 p-4 text-stone-600">
 			{product ? (
 				<div className="">
 					<div className="flex flex-col justify-center gap-4 lg:flex-row">
-						<section className="flex w-full flex-col justify-center rounded-lg bg-white p-8 shadow-xl lg:w-1/3">
+						<figure className="flex w-full flex-col justify-center rounded-lg bg-white p-8 shadow-xl lg:w-1/3">
 							<img
 								className="w-80 self-center"
 								alt={product.model}
 								src={product.imgUrl}
 							/>
-						</section>
-						<section className="flex w-full flex-col gap-2 lg:w-2/3">
+							<p className="rounded-md bg-red-500 px-2 py-1 font-bold uppercase text-white">
+								Out of stock
+							</p>
+						</figure>
+						<article className="flex w-full flex-col gap-2 lg:w-2/3">
 							<Description product={product} />
 							<Actions product={product} />
-						</section>
+						</article>
 					</div>
 				</div>
 			) : (
