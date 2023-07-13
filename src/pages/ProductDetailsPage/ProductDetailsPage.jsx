@@ -27,7 +27,7 @@ function ProductDetailsPage() {
 	const containsDetail = (newProductDetail) => {
 		if (data.productsDetails.length) {
 			const foundDetail = data.productsDetails.find(
-				(productDetail) => productDetail.id == newProductDetail.id
+				(productDetail) => productDetail.id == newProductDetail.id,
 			);
 			if (foundDetail) {
 				return true;
@@ -61,16 +61,21 @@ function ProductDetailsPage() {
 	}, [id]);
 
 	return (
-		<div>
-			<h1>Detalles del producto</h1>
+		<div className="m-8 flex flex-col rounded-2xl bg-stone-200 p-4 text-stone-600">
 			{product ? (
-				<div>
-					<div>
-						<img src={product.imgUrl} alt={product.model} />
-					</div>
-					<div>
-						<Description product={product} />
-						<Actions product={product} />
+				<div className="">
+					<div className="flex flex-col justify-center gap-4 lg:flex-row">
+						<section className="flex w-full flex-col justify-center rounded-lg bg-white p-8 shadow-xl lg:w-1/3">
+							<img
+								className="w-80 self-center"
+								alt={product.model}
+								src={product.imgUrl}
+							/>
+						</section>
+						<section className="flex w-full flex-col gap-2 lg:w-2/3">
+							<Description product={product} />
+							<Actions product={product} />
+						</section>
 					</div>
 				</div>
 			) : (
