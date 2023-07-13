@@ -1,96 +1,174 @@
+# Content index
+
+-   [Postman Documentation](#postman-documentation)
+    -   [Installation](#installation-)
+    -   [Running the project](#running-the-project-)
+-   [Abstract](#abstract)
+-   [Used packages](#used-packages)
+-   [End-to-End flow](#end-to-end-flow)
+-   [Data structures](#data-structures)
+    -   [Product list](#product-list)
+    -   [Product details](#product-details)
+    -   [Product count](#product-count)
+
 # POSTMAN DOCUMENTATION
 
 https://documenter.getpostman.com/view/27344284/2s946bBESb
 
-# SUMMARY
+# Getting Started
 
-This test consists of creating a mini-application for purchasing mobile devices.
+-   ## Installation 🛠
 
-- The application will have only two views:
-  1. Main view - Product listing
-  2. Product details
-- The implementation of the designs is left to the developer's choice but should follow the structure defined in the screenshots. The level of detail in the proposal will be positively evaluated.
-- React/Preact must be used for application development and can be complemented with other JS libraries if deemed appropriate.
-- The use of JS with ES6 is allowed, and it is preferable not to use Typescript for this test.
-- A boilerplate template can be used to create the project structure.
-- The application will be a Single Page Application (SPA) where client-side routing will be added, without being a Multi-Page Application (MPA) or using SSR.
-- The project must include the following scripts for managing the application:
-  1. START - Development mode
-  2. BUILD - Compilation for production mode
-  3. TEST - Launch tests
-  4. LINT - Code checking
-- The project must be presented in an open-source code repository (Github, Gitlab, Bitbucket) with the solution to the problem. The code should be uploaded progressively to achieve milestones.
-- The repository must include a README document (preferably included in the first commit), which explains how to run the project and provides any necessary explanatory notes or additional information.
+    `npm install`
 
-### VIEW DESCRIPTIONS
+-   ## Running the project ✈
 
-#### PLP - Product List Page
+    `npm run start`
 
-- This page will display the list of products.
-- The page will show all the items returned by the API request.
-- It will allow filtering of the content based on the search criteria entered by the user.
-- When a product is selected, it should navigate to the product details page.
-- A maximum of four items will be displayed per row, and the layout should be responsive based on the resolution.
+# Abstract
 
-#### PDP - Product Details Page
+This test consists of creating a mini-application for purchasing mobile devices
 
-- This page will be divided into two columns:
-  - The first column will display the product image component.
-  - The second column will display the product details and actions.
-- It should include a link to navigate back to the product list.
+# Used packages
 
-### COMPONENT DESCRIPTIONS
+-   [Tailwindcss](https://tailwindcss.com/)
+-   [Prettier](https://prettier.io/)
+-   [React Router](https://reactrouter.com/en/main)
+-   [Vite](https://vitejs.dev/)
 
-#### Header Component
+# Data structures
 
-- The title or icon of the application will act as a link to the main view.
-- It will display breadcrumbs showing the current page the user is on and a link for navigation.
-- On the right side of the header, it will show the number of items added to the shopping cart.
+### Product list
 
-#### Search Bar Component
+Response
 
-- It will display an input field where the user can enter a search query.
-- The user can filter the products based on the entered text, which will be compared with the Brand and Model of the products.
-- The filtering will be in real-time, meaning a search will be triggered each time the user changes the search criteria.
+```
+[
+  {
+    "id": "ZmGrkLRPXOTpxsU4jjAcv",
+    "brand": "Acer",
+    "model": "Iconia Talk S",
+    "price": "170",
+    "imgUrl": "https://itx-frontend-test.onrender.com/images/ZmGrkLRPXOTpxsU4jjAcv.jpg"
+  },
+  {
+    "id": "cGjFJlmqNPIwU59AOcY8H",
+    "brand": "Acer",
+    "model": "Liquid Z6 Plus",
+    "price": "250",
+    "imgUrl": "https://itx-frontend-test.onrender.com/images/cGjFJlmqNPIwU59AOcY8H.jpg"
+  },
+  {
+    "id": "8hKbH2UHPM_944nRHYN1n",
+    "brand": "Acer",
+    "model": "Liquid Z6",
+    "price": "120",
+    "imgUrl": "https://itx-frontend-test.onrender.com/images/8hKbH2UHPM_944nRHYN1n.jpg"
+  }
+]
+```
 
-#### List Item Component
+### Product details
 
-- It will display the following product information:
-  - Image
-  - Brand
-  - Model
-  - Price
+Response
 
-#### Product Image Component
+```
+{
+  "id": "ZmGrkLRPXOTpxsU4jjAcv",
+  "brand": "Acer",
+  "model": "Iconia Talk S",
+  "price": "170",
+  "imgUrl": "https://itx-frontend-test.onrender.com/images/ZmGrkLRPXOTpxsU4jjAcv.jpg",
+  "networkTechnology": "GSM / HSPA / LTE",
+  "networkSpeed": "HSPA 42.2/11.5 Mbps  LTE Cat4 150/50 Mbps",
+  "gprs": "Yes",
+  "edge": "Yes",
+  "announced": "2016  August",
+  "status": "Available. Released 2016  October",
+  "dimentions": "191.7 x 101 x 9.4 mm (7.55 x 3.98 x 0.37 in)",
+  "weight": "260",
+  "sim": "Dual SIM (Micro-SIM/Nano-SIM)",
+  "displayType": "IPS LCD capacitive touchscreen  16M colors",
+  "displayResolution": "7.0 inches (~69.8% screen-to-body ratio)",
+  "displaySize": "720 x 1280 pixels (~210 ppi pixel density)",
+  "os": "Android 6.0 (Marshmallow)",
+  "cpu": "Quad-core 1.3 GHz Cortex-A53",
+  "chipset": "Mediatek MT8735",
+  "gpu": "Mali-T720MP2",
+  "externalMemory": "microSD  up to 128 GB (dedicated slot)",
+  "internalMemory": [
+    "16 GB",
+    "32 GB"
+  ],
+  "ram": "2 GB RAM",
+  "primaryCamera": [
+    "13 MP",
+    "autofocus"
+  ],
+  "secondaryCmera": [
+    "2 MP",
+    "720p"
+  ],
+  "speaker": "Yes",
+  "audioJack": "Yes",
+  "wlan": [
+    "Wi-Fi 802.11 a/b/g/n",
+    "Wi-Fi Direct",
+    "hotspot"
+  ],
+  "bluetooth": [
+    "4.0",
+    "A2DP"
+  ],
+  "gps": "Yes with A-GPS GLONASS",
+  "nfc": "",
+  "radio": "FM radio",
+  "usb": "microUSB 2.0",
+  "sensors": [
+    "Accelerometer",
+    "proximity"
+  ],
+  "battery": "Non-removable Li-Ion 3400 mAh battery (12.92 Wh)",
+  "colors": [
+    "Black"
+  ],
+  "options": {
+    "colors": [
+      {
+        "code": 1000,
+        "name": "Black"
+      }
+    ],
+    "storages": [
+      {
+        "code": 2000,
+        "name": "16 GB"
+      },
+      {
+        "code": 2001,
+        "name": "32 GB"
+      }
+    ]
+  }
+}
+```
 
-- It will display the product image.
+### Product count
 
-#### Product Description Component
+Post body
 
-- It will display the details associated with the product. It will include at least the following attributes:
-  - Brand
-  - Model
-  - Price
-  - CPU
-  - RAM
-  - Operating System
-  - Screen Resolution
-  - Battery
-  - Cameras
-  - Dimensions
-  - Weight
+```
+{
+"id": "ZmGrkLRPXOTpxsU4jjAcv",
+"colorCode": 1000,
+"storageCode": 2000
+}
+```
 
-#### Product Actions Component
+Response
 
-- It will display two types of selectors where the user can choose the type of product to add to the cart. It will show selector options for the following attributes:
-
-  - Storage
-  - Colors
-
-- Even if there is only one option, the selector should still be displayed with the information. In this use case, it should be selected by default.
-- It will show an "Add" button. Once the user selects the options, they can add the product to the cart.
-- When adding a product through the API, the following information needs to be sent:
-  - Product identifier
-  - Selected color code
-  - Selected storage capacity code
-- The add request will return the number of products in the cart in the response. This value should be displayed in the header of the application on any view. Therefore, the data needs to be persisted.
+```
+{
+  "count": 1
+}
+```
