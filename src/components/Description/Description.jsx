@@ -29,7 +29,7 @@ function Description({ product }) {
 	};
 
 	return (
-		<div className=" rounded-lg bg-white p-4 shadow-xl">
+		<section className="rounded-lg bg-white p-4 shadow-xl">
 			<header>
 				<h2 className="title-font text-2xl tracking-widest text-stone-500">
 					{product.brand}
@@ -38,7 +38,6 @@ function Description({ product }) {
 					{product.model}
 				</h1>
 			</header>
-
 			{detailsBuilder('OS', product.os)}
 			{detailsBuilder('CPU', product.cpu)}
 			{detailsBuilder('RAM', product.ram)}
@@ -49,7 +48,7 @@ function Description({ product }) {
 			{detailsBuilder('Secondary camera', drawCamera(product.secondaryCmera))}
 			{detailsBuilder('Wight', product.weight)}
 			{detailsBuilder('Price', drawPrice(product.price))}
-		</div>
+		</section>
 	);
 }
 

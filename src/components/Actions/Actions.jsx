@@ -36,65 +36,50 @@ function Actions({ product }) {
 	};
 
 	return (
-		<div className='bg-red-500'>
-			<label>
-				<b>Colores: </b>
-			</label>
-			<select value={selectedColor.code} onChange={handleColorChange}>
-				{product.options.colors.map((color) => (
-					<option key={color.code} value={color.code}>
-						{color.name}
-					</option>
-				))}
-			</select>
-
-			<br />
-			<label>
-				<b>Almacenamiento: </b>
-			</label>
-			<select value={selectedStorage.code} onChange={handleStorageChange}>
-				{product.options.storages.map((storage) => (
-					<option key={storage.code} value={storage.code}>
-						{storage.name}
-					</option>
-				))}
-			</select>
-
-			<br />
-			<button onClick={handleAddToCart}>Añadir al carrito</button>
-		</div>
-		// 	<div class="mb-5 mt-6 flex items-center border-b-2 border-gray-100 pb-5">
-		// 	<div class="flex">
-		// 		<span class="mr-3">Color</span>
-		// 		<button class="h-6 w-6 rounded-full border-2 border-gray-300 focus:outline-none"></button>
-		// 		<button class="ml-1 h-6 w-6 rounded-full border-2 border-gray-300 bg-gray-700 focus:outline-none"></button>
-		// 		<button class="ml-1 h-6 w-6 rounded-full border-2 border-gray-300 bg-indigo-500 focus:outline-none"></button>
-		// 	</div>
-		// 	<div class="ml-6 flex items-center">
-		// 		<span class="mr-3">Size</span>
-		// 		<div class="relative">
-		// 			<select class="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200">
-		// 				<option>SM</option>
-		// 				<option>M</option>
-		// 				<option>L</option>
-		// 				<option>XL</option>
-		// 			</select>
-		// 			<span class="pointer-events-none absolute right-0 top-0 flex h-full w-10 items-center justify-center text-center text-gray-600">
-		// 				<svg
-		// 					fill="none"
-		// 					stroke="currentColor"
-		// 					stroke-linecap="round"
-		// 					stroke-linejoin="round"
-		// 					stroke-width="2"
-		// 					class="h-4 w-4"
-		// 					viewBox="0 0 24 24"
-		// 				>
-		// 					<path d="M6 9l6 6 6-6"></path>
-		// 				</svg>
-		// 			</span>
-		// 		</div>
-		// 	</div>
-		// </div>
+		<section className="rounded-lg bg-white p-4 shadow-xl">
+			<article className="flex flex-col items-start gap-4 md:flex-row">
+				<div className="flex w-full items-center justify-around md:w-1/4 md:justify-center md:gap-4">
+					<b>Colors</b>
+					<div className="w-1/2 md:w-2/3">
+						<select
+							className="w-full rounded border border-stone-200 p-2 focus:outline-none"
+							value={selectedColor.code}
+							onChange={handleColorChange}
+						>
+							{product.options.colors.map((color) => (
+								<option key={color.code} value={color.code}>
+									{color.name}
+								</option>
+							))}
+						</select>
+					</div>
+				</div>
+				<div className="flex w-full items-center justify-around md:w-1/4 md:justify-center md:gap-4">
+					<b>Sizes</b>
+					<div className="w-1/2 md:w-2/3">
+						<select
+							className="w-full rounded border border-stone-200 p-2 focus:outline-none"
+							value={selectedStorage.code}
+							onChange={handleStorageChange}
+						>
+							{product.options.storages.map((storage) => (
+								<option key={storage.code} value={storage.code}>
+									{storage.name}
+								</option>
+							))}
+						</select>
+					</div>
+				</div>
+			</article>
+			<article className="md:mx-40 xl:mx-60">
+				<button
+					className="mb-2 mt-4 w-full bg-stone-900 text-stone-200"
+					onClick={handleAddToCart}
+				>
+					Add to cart
+				</button>
+			</article>
+		</section>
 	);
 }
 
