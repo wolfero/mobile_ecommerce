@@ -70,9 +70,6 @@ function ProductDetailsPage() {
 							alt={product.model}
 							src={product.imgUrl}
 						/>
-						<p className="rounded-md bg-red-500 px-2 py-1 font-bold uppercase text-white">
-							Out of stock
-						</p>
 					</figure>
 					<article className="flex w-full flex-col gap-2 lg:w-2/3">
 						<Description product={product} />
