@@ -24,10 +24,6 @@ function App() {
 		storageService.saveData(dataToUpdate);
 	}
 
-	const saveData = (dataToSave) => {
-		storageData.stashData(dataToSave);
-	};
-
 	const loadData = async () => {
 		const response = await productService.readProducts();
 		const newData = {
