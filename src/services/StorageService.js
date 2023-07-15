@@ -1,5 +1,5 @@
 export class StorageService {
-	stashData(data) {
+	saveData(data) {
 		localStorage.removeItem('data');
 		var cacheData = {
 			data: data,
@@ -8,7 +8,7 @@ export class StorageService {
 		localStorage.setItem('data', JSON.stringify(cacheData));
 	}
 
-	unStashData() {
+	unSaveData() {
 		var stashedData = localStorage.getItem('data');
 
 		if (stashedData) {

@@ -47,7 +47,7 @@ function ProductDetailsPage() {
 	};
 
 	useEffect(() => {
-		const savedData = storageService.unStashData();
+		const savedData = storageService.unSaveData();
 		let detail = foundDetail(savedData.productsDetails);
 		if (detail) {
 			setProduct(detail);

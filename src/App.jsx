@@ -21,7 +21,7 @@ function App() {
 			productsInCart: newData.productsInCart,
 		};
 		setData(dataToUpdate);
-		saveData(dataToUpdate);
+		storageService.saveData(dataToUpdate);
 	}
 
 	const saveData = (dataToSave) => {
@@ -39,7 +39,7 @@ function App() {
 	};
 
 	useEffect(() => {
-		const savedData = storageService.unStashData();
+		const savedData = storageService.unSaveData();
 		if (savedData) {
 			updateContextData(savedData);
 		} else {
