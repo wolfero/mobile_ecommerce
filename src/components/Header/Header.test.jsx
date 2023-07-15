@@ -14,4 +14,15 @@ describe('Header should', () => {
 		const companyName = /MOBILE ECOMMERCE/i;
 		expect(screen.getByText(companyName)).toBeDefined();
 	});
+
+	it('show quantity of mobiles in cart', () => {
+		render(
+			<BrowserRouter>
+				<Header />
+			</BrowserRouter>,
+		);
+
+		const initialMobileCountInCart = /0/i;
+		expect(screen.getByText(initialMobileCountInCart)).toBeDefined();
+	});
 });
