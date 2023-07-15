@@ -6,56 +6,66 @@ import useSection from '../../hooks/useSection';
 function ProductListPage() {
 	const { data } = useSection();
 	const [searchText, setSearchText] = useState('');
-	const [productsData, setProductsData] = useState();
+	const [products, setProducts] = useState([]);
 
 	const handleSearchChange = (e) => {
 		setSearchText(e.target.value);
 	};
 
-	const filterProducts = () => {
-		const newProducts = productsData.filter(
+	function filterProducts() {
+		const newProducts = data.products.filter(
 			(product) =>
 				product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
 				product.model.toLowerCase().includes(searchText.toLowerCase()),
 		);
-		setProductsData(newProducts);
-	};
+		setProducts(newProducts);
+	}
 
 	useEffect(() => {
-		if (searchText != '') {
-			filterProducts();
-		} else if (data.products) {
-			setProductsData(data.products);
+		if (data.products.length > 0) {
+			setProducts(data.products);
 		}
-	}, [data.products, searchText]);
+	}, [data.products]);
+
+	useEffect(() => {
+		if (searchText !== '') {
+			filterProducts();
+		} else {
+			setProducts(data.products);
+		}
+	}, [searchText]);
 
 	return (
-		<div className="m-8 flex flex-col rounded-2xl bg-stone-200 p-4 text-center align-middle text-stone-600">
-			<section className="container mx-auto flex flex-col px-1">
+		<div className="flex flex-col p-4 m-8 text-center align-middle rounded-2xl bg-stone-200 text-stone-600">
+			<section className="container flex flex-col px-1 mx-auto">
 				<input
-					className="w-full self-center rounded-lg px-8 py-4 md:w-1/2 md:self-end"
+					className="self-center w-full px-8 py-4 rounded-lg md:w-1/2 md:self-end"
 					type="text"
 					value={searchText}
 					onChange={handleSearchChange}
 					placeholder="Search products"
 				/>
-				{productsData ? (
+				{products.length ? (
 					<section className="flex flex-wrap justify-center gap-2 pt-2 md:gap-0">
-						{productsData.map((product) => (
+						{products.map((product) => (
 							<article
 								key={product.id}
-								className="w-full max-w-sm transform cursor-pointer duration-300 hover:-translate-y-2 md:w-1/2 lg:w-1/4 md:p-2"
+								className="w-full max-w-sm duration-300 transform cursor-pointer hover:-translate-y-2 md:w-1/2 md:p-2 lg:w-1/4"
 							>
-								<Link to={`/product/${product.id}`}>
+								<Link to={`/product/${product.id}`} role="link">
 									<Item product={product} />
 								</Link>
 							</article>
 						))}
 					</section>
+				) : searchText.length > 0 ? (
+					<section role="alert" className="my-4">
+						<div className="py-4 text-red-700 bg-red-100 border border-red-400 rounded">
+							<p>Device not found</p>
+						</div>
+					</section>
 				) : (
-					<>
-						<Spinner />
-					</>
+					<Spinner />
 				)}
 			</section>
 		</div>
