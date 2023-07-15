@@ -6,12 +6,12 @@ function Item({ product }) {
 			<span className="text-4xl">{product.price}</span>€
 		</p>
 	) : (
-		<p className="bg-red-500 py-2 text-2xl font-bold uppercase text-white">Out of stock</p>
+		<p className="py-2 text-2xl font-bold text-white uppercase bg-red-500">Out of stock</p>
 	);
 
 	return (
-		<div className="flex flex-col overflow-hidden rounded-lg bg-white shadow-xl">
-			<img src={product.imgUrl} alt={product.model} className="mx-auto my-2 flex h-60" />
+		<div className="flex flex-col overflow-hidden bg-white rounded-lg shadow-xl">
+			<img src={product.imgUrl} alt={product.model} className="flex mx-auto my-2 h-60" loading='lazy'/>
 			<p className="text-lg uppercase text-stone-600">{product.brand}</p>
 			<p className="text-lg uppercase text-stone-600">{product.model}</p>
 			{price}

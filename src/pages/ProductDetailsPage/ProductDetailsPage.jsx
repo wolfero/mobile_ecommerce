@@ -23,7 +23,7 @@ function ProductDetailsPage() {
 			productsInCart: data.productsInCart,
 		};
 	};
-	
+
 	const containsDetail = (newProductDetail) => {
 		if (data.productsDetails.length) {
 			const foundDetail = data.productsDetails.find(
@@ -68,6 +68,7 @@ function ProductDetailsPage() {
 							className="self-center w-80"
 							alt={product.model}
 							src={product.imgUrl}
+							loading="lazy"
 						/>
 					</figure>
 					<article className="flex flex-col w-full gap-2 lg:w-2/3">
