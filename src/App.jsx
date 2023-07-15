@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
-
 import { Header } from './components';
 import PageRoutes from './routes/PageRoutes';
 import SectionContext from './context/SectionContext';
 import { ProductService } from './services/ProductService';
-import { StorageData } from './services/StorageService';
+import { StorageService } from './services/StorageService';
 
 function App() {
+	const productService = new ProductService();
+	const storageService = new StorageService();
 	const [data, setData] = useState({
 		products: [],
 		productsDetails: [],
 		productsInCart: 0,
 	});
-	const storageData = new StorageData();
 
 	function updateContextData(newData) {
 		const dataToUpdate = {
@@ -29,7 +29,6 @@ function App() {
 	};
 
 	const loadData = async () => {
-		const productService = new ProductService();
 		const response = await productService.readProducts();
 		const newData = {
 			products: response,
@@ -40,7 +39,7 @@ function App() {
 	};
 
 	useEffect(() => {
-		const savedData = storageData.unStashData();
+		const savedData = storageService.unStashData();
 		if (savedData) {
 			updateContextData(savedData);
 		} else {
@@ -50,10 +49,8 @@ function App() {
 
 	return (
 		<SectionContext.Provider value={{ data, updateContextData }}>
-			<>
-				<Header />
-				<PageRoutes />
-			</>
+			<Header />
+			<PageRoutes />
 		</SectionContext.Provider>
 	);
 }
