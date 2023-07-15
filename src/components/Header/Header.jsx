@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import useSection from '../../hooks/useSection';
 
 function Header() {
@@ -8,13 +9,13 @@ function Header() {
 	const pathnames = pathname.split('/').filter((item) => item);
 
 	return (
-		<header className="mx-auto bg-stone-900 p-4">
-			<h1 className="flex justify-center font-bold text-2xl md:text-5xl md:mb-0">
-				<Link to="/" className="uppercase items-center text-stone-300">
+		<header className="p-4 mx-auto bg-stone-900">
+			<h1 className="flex justify-center text-2xl font-bold md:mb-0 md:text-5xl">
+				<Link to="/" className="items-center uppercase text-stone-300">
 					Mobile ECommerce
 				</Link>
 			</h1>
-			<div className="mx-8 flex flex-wrap flex-col md:flex-row md:justify-between items-center">
+			<div className="flex flex-col flex-wrap items-center mx-8 md:flex-row md:justify-between">
 				<nav className="flex p-3">
 					<ol className="inline-flex items-center space-x-1 md:space-x-3">
 						{pathnames.length > 0 ? (
