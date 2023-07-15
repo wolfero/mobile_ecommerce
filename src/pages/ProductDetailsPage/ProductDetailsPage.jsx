@@ -4,14 +4,14 @@ import { useParams, Link } from 'react-router-dom';
 import { Description, Spinner } from '../../components';
 import { Actions } from '../../components';
 import { ProductService } from '../../services/ProductService';
-import { StorageData } from '../../services/StorageService';
+import { StorageService } from '../../services/StorageService';
 import useSection from '../../hooks/useSection';
 
 function ProductDetailsPage() {
 	const { id } = useParams();
 	const { data, updateContextData } = useSection();
 	const [product, setProduct] = useState(null);
-	const storageData = new StorageData();
+	const storageService = new StorageService();
 
 	const createNewData = (response) => {
 		if (!containsDetail(response)) {
@@ -47,7 +47,7 @@ function ProductDetailsPage() {
 	};
 
 	useEffect(() => {
-		const savedData = storageData.unStashData();
+		const savedData = storageService.unStashData();
 		let detail = foundDetail(savedData.productsDetails);
 		if (detail) {
 			setProduct(detail);
@@ -61,17 +61,17 @@ function ProductDetailsPage() {
 	}, [id]);
 
 	return (
-		<div className="m-4 flex flex-col rounded-2xl bg-stone-200 p-4 text-stone-600">
+		<div className="flex flex-col p-4 m-4 rounded-2xl bg-stone-200 text-stone-600">
 			{product ? (
-				<div className="container mx-auto flex flex-col justify-center gap-4 lg:my-8 lg:flex-row">
-					<figure className="flex w-full flex-col justify-center rounded-lg bg-white p-8 shadow-xl lg:w-1/3">
+				<div className="container flex flex-col justify-center gap-4 mx-auto lg:my-8 lg:flex-row">
+					<figure className="flex flex-col justify-center w-full p-8 bg-white rounded-lg shadow-xl lg:w-1/3">
 						<img
-							className="w-80 self-center"
+							className="self-center w-80"
 							alt={product.model}
 							src={product.imgUrl}
 						/>
 					</figure>
-					<article className="flex w-full flex-col gap-2 lg:w-2/3">
+					<article className="flex flex-col w-full gap-2 lg:w-2/3">
 						<Description product={product} />
 						<Actions product={product} />
 					</article>

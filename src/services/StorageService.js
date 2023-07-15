@@ -1,4 +1,4 @@
-export class StorageData {
+export class StorageService {
 	stashData(data) {
 		localStorage.removeItem('data');
 		var cacheData = {
