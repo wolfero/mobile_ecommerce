@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { Description, Spinner } from '../../components';
-import { Actions } from '../../components';
+import useSection from '../../hooks/useSection';
 import { ProductService } from '../../services/ProductService';
 import { StorageService } from '../../services/StorageService';
-import useSection from '../../hooks/useSection';
+import { Description, Spinner, Actions } from '../../components';
 
 function ProductDetailsPage() {
+	const storageService = new StorageService();
+	const productService = new ProductService();
 	const { id } = useParams();
 	const { data, updateContextData } = useSection();
 	const [product, setProduct] = useState(null);
-	const storageService = new StorageService();
 
-	const createNewData = (response) => {
+	const saveDataIfNotExist = (response) => {
 		if (!containsDetail(response)) {
 			data.productsDetails.push(response);
 		}
@@ -23,7 +23,7 @@ function ProductDetailsPage() {
 			productsInCart: data.productsInCart,
 		};
 	};
-
+	
 	const containsDetail = (newProductDetail) => {
 		if (data.productsDetails.length) {
 			const foundDetail = data.productsDetails.find(
@@ -41,9 +41,8 @@ function ProductDetailsPage() {
 	};
 
 	const loadData = async () => {
-		const productService = new ProductService();
 		const response = await productService.readProductById(id);
-		return createNewData(response);
+		return saveDataIfNotExist(response);
 	};
 
 	useEffect(() => {

@@ -5,7 +5,7 @@ function Description({ product }) {
 		const data = price ? (
 			<span className="">{product.price}€</span>
 		) : (
-			<span className="rounded-md bg-red-500 px-2 py-1 font-bold uppercase text-white">
+			<span className="px-2 py-1 font-bold text-white uppercase bg-red-500 rounded-md">
 				Out of stock
 			</span>
 		);
@@ -14,14 +14,17 @@ function Description({ product }) {
 
 	const drawCamera = (camera) => {
 		const isString = typeof camera === 'string';
-		const getCameraData = (cameraData) => cameraData.map((data) => data + ' ');
-		return isString ? camera : getCameraData(camera);
+		if (isString) {
+			return camera;
+		} else {
+			return camera.map((data) => data + ' ');
+		}
 	};
 
 	const detailsBuilder = (title, detail) => {
 		const drawDetail = detail ? detail : '-';
 		return (
-			<article className="flex flex-col justify-between gap-2 border-t border-stone-300 p-2 text-stone-600 md:flex-row">
+			<article className="flex flex-col justify-between gap-2 p-2 border-t border-stone-300 text-stone-600 md:flex-row">
 				<b>{title}</b>
 				<p>{drawDetail}</p>
 			</article>
@@ -29,12 +32,12 @@ function Description({ product }) {
 	};
 
 	return (
-		<section className="rounded-lg bg-white p-4 shadow-xl">
+		<section className="p-4 bg-white rounded-lg shadow-xl">
 			<header>
-				<h2 className="title-font text-2xl tracking-widest text-stone-500">
+				<h2 className="text-2xl tracking-widest title-font text-stone-500">
 					{product.brand}
 				</h2>
-				<h1 className="title-font mb-1 text-3xl font-medium text-stone-900">
+				<h1 className="mb-1 text-3xl font-medium title-font text-stone-900">
 					{product.model}
 				</h1>
 			</header>
