@@ -19,13 +19,12 @@ export class ProductService {
 		);
 	}
 
-	async addProductToCart(productId, colorCode, storageCode) {
+	async addProductToCart(id, colorCode, storageCode) {
 		const body = JSON.stringify({
-			id: productId,
-			colorCode: colorCode,
-			storageCode: storageCode,
+			id,
+			colorCode,
+			storageCode,
 		});
-		
 		const requestOptions = {
 			redirect: 'follow',
 			method: 'POST',
