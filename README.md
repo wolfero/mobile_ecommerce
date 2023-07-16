@@ -40,7 +40,7 @@ This test consists of creating a mini-application for purchasing mobile devices
 -   [Jsdom](https://www.npmjs.com/package/jsdom)
 
 # End-to-End flow
-![image](https://github.com/wolfero/napptilus_front/assets/64894110/284e3ade-487e-4b08-838d-fd60406d7c75)
+![end_to_end_flow](https://github.com/wolfero/napptilus_front/assets/64894110/1439cfc7-bb03-41e8-8f8f-ff59a4021ca4)
 
 
 # Data structures
