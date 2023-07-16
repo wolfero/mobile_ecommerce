@@ -31,14 +31,23 @@ This test consists of creating a mini-application for purchasing mobile devices
 
 # Used packages
 
--   [Tailwindcss](https://tailwindcss.com/)
+-   [Vite](https://vitejs.dev/)
 -   [Prettier](https://prettier.io/)
 -   [React Router](https://reactrouter.com/en/main)
--   [Vite](https://vitejs.dev/)
+-   [Tailwindcss](https://tailwindcss.com/)
+-   [React Testing Library](https://www.npmjs.com/package/@testing-library/react)
+-   [Vitest](https://vitest.dev/)
+-   [Jsdom](https://www.npmjs.com/package/jsdom)
+
+# End-to-End flow
+![image](https://github.com/wolfero/napptilus_front/assets/64894110/284e3ade-487e-4b08-838d-fd60406d7c75)
+
 
 # Data structures
 
 ### Product list
+
+Url: https://itx-frontend-test.onrender.com/api/product
 
 Response
 
@@ -69,6 +78,8 @@ Response
 ```
 
 ### Product details
+
+Url: https://itx-frontend-test.onrender.com/api/product/product_id (ZmGrkLRPXOTpxsU4jjAcv)
 
 Response
 
@@ -154,6 +165,8 @@ Response
 ```
 
 ### Product count
+
+Url: https://itx-frontend-test.onrender.com/api/cart
 
 Post body
 
