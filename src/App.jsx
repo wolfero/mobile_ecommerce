@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { Header } from './components';
+import PageRoutes from './routes/PageRoutes';
+import SectionContext from './context/SectionContext';
+import { ProductService } from './services/ProductService';
+import { StorageService } from './services/StorageService';
 
 function App() {
-  const [count, setCount] = useState(0)
+	const productService = new ProductService();
+	const storageService = new StorageService();
+	const [data, setData] = useState({
+		products: [],
+		productsDetails: [],
+		productsInCart: 0,
+	});
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	function updateContextData(newData) {
+		const dataToUpdate = {
+			products: newData.products,
+			productsDetails: newData.productsDetails,
+			productsInCart: newData.productsInCart,
+		};
+		setData(dataToUpdate);
+		storageService.saveData(dataToUpdate);
+	}
+
+	const loadData = async () => {
+		const response = await productService.readProducts();
+		const newData = {
+			products: response,
+			productsDetails: data.productsDetails,
+			productsInCart: data.productsInCart,
+		};
+		return newData;
+	};
+
+	useEffect(() => {
+		const savedData = storageService.unSaveData();
+		if (savedData) {
+			updateContextData(savedData);
+		} else {
+			loadData().then((response) => updateContextData(response));
+		}
+	}, []);
+
+	return (
+		<SectionContext.Provider value={{ data, updateContextData }}>
+			<Header />
+			<PageRoutes />
+		</SectionContext.Provider>
+	);
 }
-
-export default App
+export default App;
